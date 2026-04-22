@@ -4,3 +4,62 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0f1117;
+    color: #ffffff;
+}
+
+header {
+    background-color: #1a1d2e;
+    padding: 24px;
+    text-align: center;
+    border-bottom: 2px solid #00c896;
+}
+
+header h1 {
+    font-size: 2rem;
+    color: #00c896;
+}
+
+header p {
+    color: #aaaaaa;
+    margin-top: 8px;
+}
+
+main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 24px;
+}
+
+main h2 {
+    margin-bottom: 24px;
+    color: #00c896;
+}
+
+#lista-ativos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.ativo {
+    background-color: #1a1d2e;
+    border: 1px solid #2a2d3e;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.ativo h3 {
+    font-size: 1.3rem;
+    color: #00c896;
+    margin-bottom: 12px;
+}
+
+.ativo p {
+    color: #aaaaaa;
+    margin-top: 6px;
+    font-size: 0.95rem;
+}
