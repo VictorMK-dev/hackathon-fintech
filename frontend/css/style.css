@@ -1,4 +1,4 @@
-/* estilos do InvestFácil */
+/* estilos do Banco X */
 * {
     margin: 0;
     padding: 0;
@@ -23,11 +23,6 @@ header h1 {
     color: #c86b00;
 }
 
-header p {
-    color: #aaaaaa;
-    margin-top: 8px;
-}
-
 main {
     max-width: 900px;
     margin: 20px auto;
@@ -36,7 +31,7 @@ main {
 
 main h2 {
     margin-bottom: 24px;
-    color: #c86b00;
+    color: #c89900;
 }
 
 #lista-ativos {
