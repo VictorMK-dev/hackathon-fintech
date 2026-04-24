@@ -8,7 +8,7 @@ CORS(app)
 
 # Carrega os dados do arquivo JSON
 def carregar_ativos():
-    caminho = os.path.join(os.path.dirname(__file__), 'data', 'ativos.json')
+    caminho = os.path.join(os.path.dirname(__file__), 'data.json')
     with open(caminho, 'r', encoding='utf-8') as f:
         return json.load(f)
 
