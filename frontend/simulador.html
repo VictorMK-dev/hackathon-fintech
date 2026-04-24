@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvestFácil — Simulador</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo">📈 InvestFácil</div>
+        <div class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="dashboard.html">Mercado</a>
+            <a href="perfil.html">Meu Perfil</a>
+            <a href="simulador.html" class="active">Simulador</a>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <div class="page-header">
+            <h1>Simulador de Carteira</h1>
+            <p>Monte uma carteira fictícia e veja quanto ela renderia</p>
+        </div>
+
+        <div class="simulador-layout">
+
+            <div class="simulador-form">
+                <h2>Configure sua simulação</h2>
+
+                <div class="form-group">
+                    <label>Valor inicial a investir</label>
+                    <div class="input-prefix">
+                        <span>R$</span>
+                        <input type="number" id="valor-inicial" placeholder="1000" min="100" value="1000">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Período de simulação</label>
+                    <select id="periodo">
+                        <option value="6">6 meses</option>
+                        <option value="12" selected>12 meses</option>
+                        <option value="24">24 meses</option>
+                        <option value="36">36 meses</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Distribuição da carteira</label>
+                    <div class="distribuicao">
+                        <div class="dist-item">
+                            <span>📊 Ações</span>
+                            <input type="range" id="range-acoes" min="0" max="100" value="40" oninput="atualizarDistribuicao()">
+                            <span id="val-acoes">40%</span>
+                        </div>
+                        <div class="dist-item">
+                            <span>🏢 FIIs</span>
+                            <input type="range" id="range-fiis" min="0" max="100" value="30" oninput="atualizarDistribuicao()">
+                            <span id="val-fiis">30%</span>
+                        </div>
+                        <div class="dist-item">
+                            <span>🏦 Renda Fixa</span>
+                            <input type="range" id="range-rf" min="0" max="100" value="30" oninput="atualizarDistribuicao()">
+                            <span id="val-rf">30%</span>
+                        </div>
+                    </div>
+                    <div id="aviso-total" class="aviso hidden">⚠️ A soma deve ser 100%</div>
+                </div>
+
+                <button class="btn-primary" onclick="simular()">Simular carteira</button>
+            </div>
+
+            <div class="simulador-resultado" id="simulador-resultado">
+                <div class="resultado-placeholder">
+                    <div class="placeholder-icon">🧮</div>
+                    <p>Configure os parâmetros ao lado e clique em <strong>Simular carteira</strong> para ver o resultado.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>InvestFácil © 2025 — Desenvolvido na Hackathon de Calouros UNAMA</p>
+        <p class="footer-disclaimer">⚠️ Este site é educacional. Não constitui recomendação financeira oficial.</p>
+    </footer>
+
+    <script src="js/simulador.js"></script>
+</body>
+</html>
