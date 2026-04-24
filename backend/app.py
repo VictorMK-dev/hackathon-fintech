@@ -1,75 +1,60 @@
 from flask import Flask, jsonify
-import json
 from flask_cors import CORS
+import json
+import os
 
 app = Flask(__name__)
 CORS(app)
 
-with open("data.json", "r", encoding="utf-8") as f:
-    data = json.load(f)
+# Carrega os dados do arquivo JSON
+def carregar_ativos():
+    caminho = os.path.join(os.path.dirname(__file__), 'data', 'ativos.json')
+    with open(caminho, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
+# Rota: lista todos os ativos
+@app.route('/api/ativos')
+def ativos():
+    dados = carregar_ativos()
+    return jsonify(dados)
 
-@app.route("/mercado")
-def mercado():
-    return jsonify(data["mercado"])
-
-
-@app.route("/acoes")
-def acoes():
-    return jsonify(data["acoes"])
-
-
-@app.route("/acoes/<ticker>")
-def acao_por_ticker(ticker):
-    acao = next((a for a in data["acoes"] if a["ticker"] == ticker.upper()), None)
-    if not acao:
-        return jsonify({"erro": "Ação não encontrada"}), 404
-    return jsonify(acao)
-
-
-@app.route("/fiis")
-def fiis():
-    return jsonify(data["fiis"])
-
-
-@app.route("/fiis/<ticker>")
-def fii_por_ticker(ticker):
-    fii = next((f for f in data["fiis"] if f["ticker"] == ticker.upper()), None)
-    if not fii:
-        return jsonify({"erro": "FII não encontrado"}), 404
-    return jsonify(fii)
-
-
-@app.route("/tesouro")
-def tesouro():
-    return jsonify(data["tesouro_direto"])
-
-
-@app.route("/perfil/<tipo>")
+# Rota: recomendação por perfil
+@app.route('/api/perfil/<tipo>')
 def perfil(tipo):
-    perfis = data["perfis_investidor"]
+    perfis = {
+        "conservador": {
+            "nome": "Investidor Conservador",
+            "descricao": "Você prefere segurança e previsibilidade. Seu foco é preservar o patrimônio com baixo risco, priorizando renda fixa e ativos estáveis.",
+            "carteira": [
+                {"tipo": "Tesouro Direto / Renda Fixa", "percentual": 70},
+                {"tipo": "FIIs (Fundos Imobiliários)", "percentual": 20},
+                {"tipo": "Ações", "percentual": 10}
+            ]
+        },
+        "moderado": {
+            "nome": "Investidor Moderado",
+            "descricao": "Você busca equilíbrio entre segurança e crescimento. Aceita algum risco para ter retornos melhores no médio prazo.",
+            "carteira": [
+                {"tipo": "Tesouro Direto / Renda Fixa", "percentual": 40},
+                {"tipo": "FIIs (Fundos Imobiliários)", "percentual": 30},
+                {"tipo": "Ações", "percentual": 30}
+            ]
+        },
+        "arrojado": {
+            "nome": "Investidor Arrojado",
+            "descricao": "Você tem alta tolerância ao risco e foco no longo prazo. Prioriza crescimento de patrimônio e aceita volatilidade pelo caminho.",
+            "carteira": [
+                {"tipo": "Ações", "percentual": 60},
+                {"tipo": "FIIs (Fundos Imobiliários)", "percentual": 25},
+                {"tipo": "Tesouro Direto / Renda Fixa", "percentual": 15}
+            ]
+        }
+    }
+
     if tipo not in perfis:
-        return jsonify({"erro": "Perfil inválido. Use: conservador, moderado ou arrojado"}), 400
+        return jsonify({"erro": "Perfil inválido"}), 400
+
     return jsonify(perfis[tipo])
 
-
-@app.route("/carteiras")
-def carteiras():
-    return jsonify(data["carteiras_modelo"])
-
-
-@app.route("/carteiras/<perfil_id>")
-def carteira_por_perfil(perfil_id):
-    carteira = next((c for c in data["carteiras_modelo"] if c["perfil"] == perfil_id), None)
-    if not carteira:
-        return jsonify({"erro": "Carteira não encontrada"}), 404
-    return jsonify(carteira)
-
-
-@app.route("/glossario")
-def glossario():
-    return jsonify(data["glossario"])
-
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
