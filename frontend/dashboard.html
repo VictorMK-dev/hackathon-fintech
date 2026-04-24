@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvestFácil — Mercado</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo">📈 InvestFácil</div>
+        <div class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="dashboard.html" class="active">Mercado</a>
+            <a href="perfil.html">Meu Perfil</a>
+            <a href="simulador.html">Simulador</a>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <div class="page-header">
+            <h1>Mercado de Ativos</h1>
+            <p>Acompanhe os principais ativos disponíveis para investimento</p>
+        </div>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filtrar('todos')">Todos</button>
+            <button class="filter-btn" onclick="filtrar('ação')">Ações</button>
+            <button class="filter-btn" onclick="filtrar('FII')">FIIs</button>
+            <button class="filter-btn" onclick="filtrar('renda_fixa')">Renda Fixa</button>
+        </div>
+
+        <div id="loading" class="loading-state">Carregando ativos...</div>
+        <div id="lista-ativos" class="ativos-grid"></div>
+    </main>
+
+    <footer class="footer">
+        <p>InvestFácil © 2025 — Desenvolvido na Hackathon de Calouros UNAMA</p>
+        <p class="footer-disclaimer">⚠️ Este site é educacional. Não constitui recomendação financeira oficial.</p>
+    </footer>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
