@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvestFácil — Meu Perfil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo">📈 InvestFácil</div>
+        <div class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="dashboard.html">Mercado</a>
+            <a href="perfil.html" class="active">Meu Perfil</a>
+            <a href="simulador.html">Simulador</a>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <div class="page-header">
+            <h1>Descubra seu Perfil</h1>
+            <p>Responda 4 perguntas rápidas e receba uma recomendação de carteira personalizada</p>
+        </div>
+
+        <div id="questionario" class="questionario">
+
+            <div class="pergunta" id="perg-1">
+                <div class="pergunta-numero">01 / 04</div>
+                <h2>Qual é seu objetivo principal ao investir?</h2>
+                <div class="opcoes">
+                    <button class="opcao-btn" onclick="responder(1, 'conservador')">💰 Proteger meu dinheiro da inflação</button>
+                    <button class="opcao-btn" onclick="responder(1, 'moderado')">📈 Crescer meu patrimônio aos poucos</button>
+                    <button class="opcao-btn" onclick="responder(1, 'arrojado')">🚀 Maximizar meus ganhos no longo prazo</button>
+                </div>
+            </div>
+
+            <div class="pergunta hidden" id="perg-2">
+                <div class="pergunta-numero">02 / 04</div>
+                <h2>Se seus investimentos caíssem 20% em um mês, o que faria?</h2>
+                <div class="opcoes">
+                    <button class="opcao-btn" onclick="responder(2, 'conservador')">😨 Venderia tudo para parar de perder</button>
+                    <button class="opcao-btn" onclick="responder(2, 'moderado')">😐 Esperaria a recuperação sem mexer</button>
+                    <button class="opcao-btn" onclick="responder(2, 'arrojado')">😎 Aproveitaria para comprar mais barato</button>
+                </div>
+            </div>
+
+            <div class="pergunta hidden" id="perg-3">
+                <div class="pergunta-numero">03 / 04</div>
+                <h2>Por quanto tempo você pretende deixar o dinheiro investido?</h2>
+                <div class="opcoes">
+                    <button class="opcao-btn" onclick="responder(3, 'conservador')">⏱️ Menos de 1 ano</button>
+                    <button class="opcao-btn" onclick="responder(3, 'moderado')">📅 De 1 a 5 anos</button>
+                    <button class="opcao-btn" onclick="responder(3, 'arrojado')">🏦 Mais de 5 anos</button>
+                </div>
+            </div>
+
+            <div class="pergunta hidden" id="perg-4">
+                <div class="pergunta-numero">04 / 04</div>
+                <h2>Como você se descreveria em relação a investimentos?</h2>
+                <div class="opcoes">
+                    <button class="opcao-btn" onclick="responder(4, 'conservador')">🐣 Sou iniciante e prefiro segurança</button>
+                    <button class="opcao-btn" onclick="responder(4, 'moderado')">📚 Já sei o básico e aceito algum risco</button>
+                    <button class="opcao-btn" onclick="responder(4, 'arrojado')">🎯 Entendo bem e aceito alto risco</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="resultado" class="resultado hidden"></div>
+    </main>
+
+    <footer class="footer">
+        <p>InvestFácil © 2025 — Desenvolvido na Hackathon de Calouros UNAMA</p>
+        <p class="footer-disclaimer">⚠️ Este site é educacional. Não constitui recomendação financeira oficial.</p>
+    </footer>
+
+    <script src="js/perfil.js"></script>
+</body>
+</html>
