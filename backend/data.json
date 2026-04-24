@@ -1,0 +1,67 @@
+{
+  "ativos": [
+    {
+      "nome": "PETR4",
+      "tipo": "ação",
+      "preco": 38.52,
+      "variacao": "+1.3%",
+      "descricao": "Petrobras — uma das maiores empresas do Brasil, do setor de petróleo e gás."
+    },
+    {
+      "nome": "VALE3",
+      "tipo": "ação",
+      "preco": 68.90,
+      "variacao": "-0.5%",
+      "descricao": "Vale — gigante global de mineração, principal produtora de minério de ferro."
+    },
+    {
+      "nome": "ITUB4",
+      "tipo": "ação",
+      "preco": 34.20,
+      "variacao": "+0.9%",
+      "descricao": "Itaú Unibanco — maior banco privado do Brasil e da América Latina."
+    },
+    {
+      "nome": "BBDC4",
+      "tipo": "ação",
+      "preco": 15.80,
+      "variacao": "-1.2%",
+      "descricao": "Bradesco — um dos principais bancos do país com presença em todo o Brasil."
+    },
+    {
+      "nome": "HGLG11",
+      "tipo": "FII",
+      "preco": 156.20,
+      "variacao": "+0.8%",
+      "descricao": "CSHG Logística — FII focado em galpões logísticos e industriais."
+    },
+    {
+      "nome": "MXRF11",
+      "tipo": "FII",
+      "preco": 10.45,
+      "variacao": "+0.3%",
+      "descricao": "Maxi Renda — FII de papel com foco em recebíveis imobiliários."
+    },
+    {
+      "nome": "VISC11",
+      "tipo": "FII",
+      "preco": 105.60,
+      "variacao": "-0.2%",
+      "descricao": "Vinci Shopping Centers — FII que investe em shoppings pelo Brasil."
+    },
+    {
+      "nome": "Tesouro Selic",
+      "tipo": "renda_fixa",
+      "preco": 13.75,
+      "variacao": "+0.0%",
+      "descricao": "Título do governo federal atrelado à taxa Selic. Baixo risco e alta liquidez."
+    },
+    {
+      "nome": "Tesouro IPCA+",
+      "tipo": "renda_fixa",
+      "preco": 6.20,
+      "variacao": "+0.0%",
+      "descricao": "Protege contra a inflação com rentabilidade real garantida pelo governo."
+    }
+  ]
+}
