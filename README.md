@@ -6,12 +6,11 @@
 
 ## 👥 Integrantes
 
-- Nome 1
-- Nome 2
-- Nome 3
-- Nome 4
-- Nome 5
-- Nome 6
+- Gustavo Pina(Pesquisa)
+- Renato Valois(Frontend)
+- Danilo(Frontend)
+- Nicolas Rocha(Backend/.json)
+- Victor Brandão(Backend/Frontend)
 
 ---
 
