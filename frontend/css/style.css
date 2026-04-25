@@ -374,6 +374,50 @@ body {
 a.nav-logo {
     text-decoration: none;
 }
+.ativo-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+.ativo-dy {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    background: var(--accent-dim);
+    padding: 3px 8px;
+    border-radius: 100px;
+}
+
+.ativo-badge {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-comprar {
+    background: rgba(0, 232, 150, 0.15);
+    color: #00e896;
+    border: 1px solid #00e896;
+}
+
+.badge-manter {
+    background: rgba(245, 166, 35, 0.15);
+    color: #f5a623;
+    border: 1px solid #f5a623;
+}
+
+.badge-vender {
+    background: rgba(255, 77, 109, 0.15);
+    color: #ff4d6d;
+    border: 1px solid #ff4d6d;
+}
 .footer { border-top: 1px solid var(--border); padding: 24px 48px; text-align: center; }
 .footer p { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-dim); font-weight: 300; }
 .footer-disclaimer { margin-top: 6px; color: var(--text-dim); }

@@ -17,6 +17,12 @@ function renderizar(ativos) {
 
   ativos.forEach(ativo => {
     const positivo = ativo.variacao.startsWith("+")
+    const classBadge = {
+      "COMPRAR": "badge-comprar",
+      "MANTER": "badge-manter",
+      "VENDER": "badge-vender"
+    }[ativo.classificacao] || ""
+
     lista.innerHTML += `
       <div class="ativo-card">
         <div class="ativo-header">
@@ -25,7 +31,11 @@ function renderizar(ativos) {
         </div>
         <div class="ativo-preco">R$ ${ativo.preco.toFixed(2)}</div>
         <div class="ativo-variacao ${positivo ? 'positive' : 'negative'}">${ativo.variacao}</div>
-        <div class="ativo-desc">${ativo.descricao || ''}</div>
+        <div class="ativo-meta">
+          ${ativo.dividend_yield > 0 ? `<span class="ativo-dy">DY ${ativo.dividend_yield}% a.a.</span>` : ''}
+          <span class="ativo-badge ${classBadge}">${ativo.classificacao}</span>
+        </div>
+        <div class="ativo-desc">${ativo.descricao}</div>
       </div>
     `
   })

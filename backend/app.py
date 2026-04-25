@@ -6,55 +6,92 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-# Carrega os dados do arquivo JSON
-def carregar_ativos():
+def carregar_dados():
     caminho = os.path.join(os.path.dirname(__file__), 'data.json')
     with open(caminho, 'r', encoding='utf-8') as f:
         return json.load(f)
 
-# Rota: lista todos os ativos
+# Todos os ativos juntos
 @app.route('/api/ativos')
 def ativos():
-    dados = carregar_ativos()
-    return jsonify(dados)
+    dados = carregar_dados()
+    todos = []
+    for a in dados['acoes']:
+        todos.append({
+            "nome": a['ticker'],
+            "tipo": "ação",
+            "preco": a['preco_atual'],
+            "variacao": f"{'+' if a['variacao_dia'] >= 0 else ''}{a['variacao_dia']}%",
+            "descricao": f"{a['nome']} — {a['setor']}. {a['motivo_classificacao']}",
+            "classificacao": a['classificacao'],
+            "nota": a['nota_sistema'],
+            "dividend_yield": a.get('dividend_yield', 0),
+            "adequado_para": a['adequado_para']
+        })
+    for f in dados['fiis']:
+        todos.append({
+            "nome": f['ticker'],
+            "tipo": "FII",
+            "preco": f['preco_atual'],
+            "variacao": f"{'+' if f['variacao_dia'] >= 0 else ''}{f['variacao_dia']}%",
+            "descricao": f"{f['nome']} — {f['segmento']}. {f['motivo_classificacao']}",
+            "classificacao": f['classificacao'],
+            "nota": f['nota_sistema'],
+            "dividend_yield": f.get('dividend_yield_ano', 0),
+            "adequado_para": f['adequado_para']
+        })
+    for t in dados['tesouro_direto']:
+        todos.append({
+            "nome": t['nome'],
+            "tipo": "renda_fixa",
+            "preco": t['rentabilidade_bruta_ano'],
+            "variacao": "+0.0%",
+            "descricao": f"{t['indicado_para']}. {t['motivo_classificacao']}",
+            "classificacao": t['classificacao'],
+            "nota": t['nota_sistema'],
+            "dividend_yield": 0,
+            "adequado_para": t['adequado_para']
+        })
+    return jsonify({"ativos": todos})
 
-# Rota: recomendação por perfil
+# Mercado — índices e resumo do dia
+@app.route('/api/mercado')
+def mercado():
+    dados = carregar_dados()
+    return jsonify(dados['mercado'])
+
+# Perfil do investidor
 @app.route('/api/perfil/<tipo>')
 def perfil(tipo):
-    perfis = {
-        "conservador": {
-            "nome": "Investidor Conservador",
-            "descricao": "Você prefere segurança e previsibilidade. Seu foco é preservar o patrimônio com baixo risco, priorizando renda fixa e ativos estáveis.",
-            "carteira": [
-                {"tipo": "Tesouro Direto / Renda Fixa", "percentual": 70},
-                {"tipo": "FIIs (Fundos Imobiliários)", "percentual": 20},
-                {"tipo": "Ações", "percentual": 10}
-            ]
-        },
-        "moderado": {
-            "nome": "Investidor Moderado",
-            "descricao": "Você busca equilíbrio entre segurança e crescimento. Aceita algum risco para ter retornos melhores no médio prazo.",
-            "carteira": [
-                {"tipo": "Tesouro Direto / Renda Fixa", "percentual": 40},
-                {"tipo": "FIIs (Fundos Imobiliários)", "percentual": 30},
-                {"tipo": "Ações", "percentual": 30}
-            ]
-        },
-        "arrojado": {
-            "nome": "Investidor Arrojado",
-            "descricao": "Você tem alta tolerância ao risco e foco no longo prazo. Prioriza crescimento de patrimônio e aceita volatilidade pelo caminho.",
-            "carteira": [
-                {"tipo": "Ações", "percentual": 60},
-                {"tipo": "FIIs (Fundos Imobiliários)", "percentual": 25},
-                {"tipo": "Tesouro Direto / Renda Fixa", "percentual": 15}
-            ]
-        }
-    }
+    dados = carregar_dados()
+    perfis_raw = dados['perfis_investidor']
+    carteiras = {c['perfil']: c for c in dados['carteiras_modelo']}
 
-    if tipo not in perfis:
+    if tipo not in perfis_raw:
         return jsonify({"erro": "Perfil inválido"}), 400
 
-    return jsonify(perfis[tipo])
+    p = perfis_raw[tipo]
+    c = carteiras.get(tipo, {})
+
+    return jsonify({
+        "nome": f"Investidor {p['label']} {p['emoji']}",
+        "descricao": p['descricao'],
+        "horizonte": p['horizonte_tipico'],
+        "frase": p['frase'],
+        "rentabilidade_estimada": c.get('rentabilidade_estimada_ano', 0),
+        "carteira": [
+            {"tipo": "Renda Fixa / Tesouro", "percentual": p['alocacao_sugerida']['renda_fixa']},
+            {"tipo": "FIIs", "percentual": p['alocacao_sugerida']['fiis']},
+            {"tipo": "Ações", "percentual": p['alocacao_sugerida']['acoes']}
+        ],
+        "ativos_recomendados": p['ativos_recomendados']
+    })
+
+# Glossário
+@app.route('/api/glossario')
+def glossario():
+    dados = carregar_dados()
+    return jsonify(dados['glossario'])
 
 if __name__ == '__main__':
     app.run(debug=True)
