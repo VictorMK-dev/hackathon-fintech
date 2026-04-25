@@ -8,7 +8,7 @@
 
 - Gustavo Pina(Pesquisa)
 - Renato Valois(Frontend)
-- Danilo(Frontend)
+- Danilo Salgado(Frontend)
 - Nicolas Rocha(Backend/.json)
 - Victor Brandão(Backend/Frontend)
 
