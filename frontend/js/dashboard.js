@@ -1,3 +1,26 @@
+// Carrega índices de mercado
+fetch("http://localhost:5000/api/mercado")
+  .then(res => res.json())
+  .then(dados => {
+    const container = document.getElementById("indices-container")
+    container.innerHTML = ""
+    dados.indices.forEach(indice => {
+      const positivo = indice.variacao_dia >= 0
+      container.innerHTML += `
+        <div class="indice-item">
+          <span class="indice-codigo">${indice.codigo}</span>
+          <span class="indice-valor">${indice.valor.toLocaleString('pt-BR')}</span>
+          <span class="indice-variacao ${positivo ? 'positive' : 'negative'}">
+            ${positivo ? '+' : ''}${indice.variacao_dia}%
+          </span>
+        </div>
+      `
+    })
+  })
+  .catch(() => {
+    document.getElementById("indices-container").textContent = ""
+  });
+
 let todosAtivos = []
 
 fetch("http://localhost:5000/api/ativos")
