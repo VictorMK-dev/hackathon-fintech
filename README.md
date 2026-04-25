@@ -1,23 +1,23 @@
 # 📈 InvestFácil
 
-> Site que facilita o acompanhamento e a tomada de decisão no mundo dos investimentos, tornando a bolsa de valores acessível para qualquer pessoa.
+> Plataforma educacional de investimentos desenvolvida na Hackathon de Calouros da UNAMA 2025.
 
 ---
 
 ## 👥 Integrantes
 
-- Rodrigo
-- Gustavo
-- Danilo (Frontend)
-- Renato (Frontend)
-- Nicolas (Backend)
-- Victor (Backend)
+- Nome 1
+- Nome 2
+- Nome 3
+- Nome 4
+- Nome 5
+- Nome 6
 
 ---
 
 ## 💡 Problema escolhido
 
-Investir na bolsa de valores é algo que ainda intimida muita gente. A maioria das plataformas existentes é complexa, cheia de termos técnicos e pouco acessível para quem está começando. Muitas pessoas evitam investir por não entender onde colocar o dinheiro ou por não conseguir acompanhar seus ativos de forma simples.
+Investir na bolsa de valores ainda intimida muita gente. A maioria das plataformas é complexa, cheia de termos técnicos e pouco acessível para quem está começando. Muitas pessoas evitam investir por não entender onde colocar o dinheiro ou por não conseguir acompanhar seus ativos de forma simples.
 
 ---
 
@@ -25,48 +25,45 @@ Investir na bolsa de valores é algo que ainda intimida muita gente. A maioria d
 
 O **InvestFácil** é um site que oferece:
 
-- 📊 **Acompanhamento de ativos** — visualização clara de ações, FIIs e Tesouro Direto
-- 🤖 **Sugestão de investimentos** — recomendação automática baseada no perfil do usuário (conservador, moderado ou arrojado)
-- 📰 **Resumo do mercado** — visão geral do desempenho da bolsa de forma simples
-- 💼 **Simulação de carteira** — o usuário monta uma carteira fictícia e vê como ela se comportaria
+- 📊 **Mercado de ativos** — acompanhe 19 ativos (ações, FIIs e Tesouro Direto) com classificações de compra, manutenção e venda
+- 📈 **Índices de mercado** — visualize Ibovespa, IFIX, SMLL e IDIV em tempo real
+- 🎯 **Perfil do investidor** — questionário de 4 perguntas com recomendação personalizada de carteira
+- 🧮 **Simulador de carteira** — simule rendimentos em até 36 meses com distribuição customizável
+- 📚 **Conteúdo educacional** — botão de acesso direto a vídeo introdutório sobre investimentos
 
 ---
 
 ## 🛠️ Tecnologias usadas
 
-| Camada    | Tecnologia        |
-|-----------|-------------------|
-| Frontend  | HTML, CSS, JavaScript |
-| Backend   | Python + Flask    |
-| Dados     | Dados simulados (JSON) |
+| Camada | Tecnologia |
+|--------|------------|
+| Frontend | HTML, CSS, JavaScript |
+| Backend | Python + Flask |
+| Dados | Dados simulados (JSON) |
 | Versionamento | Git + GitHub |
 
 ---
 
 ## 📁 Estrutura do projeto
-
-```
 investfacil/
 ├── backend/
-│   ├── app.py          # Arquivo principal da API Flask
-│   ├── routes/
-│   │   ├── ativos.py   # Rotas de ações, FIIs, Tesouro
-│   │   └── perfil.py   # Rotas de recomendação por perfil
-│   ├── data/
-│   │   └── ativos.json # Dados simulados dos ativos
+│   ├── app.py           # API Flask com todas as rotas
+│   ├── data.json        # Dados simulados dos ativos
 │   └── requirements.txt
 │
 ├── frontend/
-│   ├── index.html      # Landing page / apresentação
-│   ├── dashboard.html  # Painel de acompanhamento
-│   ├── perfil.html     # Questionário de perfil do investidor
+│   ├── index.html       # Landing page
+│   ├── dashboard.html   # Mercado de ativos
+│   ├── perfil.html      # Perfil do investidor
+│   ├── simulador.html   # Simulador de carteira
 │   ├── css/
 │   │   └── style.css
 │   └── js/
-│       └── main.js     # Chamadas à API e lógica do frontend
+│       ├── dashboard.js
+│       ├── perfil.js
+│       └── simulador.js
 │
 └── README.md
-```
 
 ---
 
@@ -74,34 +71,48 @@ investfacil/
 
 ### Pré-requisitos
 - Python 3.10+
-- pip
+- VS Code com extensão Live Server
 
-### Passos
+### Passo a passo
 
 **1. Clone o repositório:**
 ```bash
-git clone https://github.com/seu-usuario/investfacil.git
-cd investfacil
+git clone https://github.com/VictorMK-dev/hackathon-fintech
+cd hackathon-fintech
 ```
 
-**2. Instale as dependências do backend:**
+**2. Instale as dependências:**
 ```bash
-cd backend
-pip install -r requirements.txt
+python -m pip install flask flask-cors
 ```
 
-**3. Rode o servidor Flask:**
+**3. Rode o backend:**
 ```bash
-python app.py
+python backend/app.py
 ```
 
 **4. Abra o frontend:**
 
-Abra o arquivo `frontend/index.html` diretamente no navegador, ou use a extensão **Live Server** no VS Code.
+Abra o arquivo `frontend/index.html` com o **Live Server** no VS Code.
+
+> ⚠️ O Flask precisa estar rodando para o site funcionar!
 
 ---
 
-## 📌 Observações
+## 🔗 Rotas da API
 
-- Os dados de ativos são simulados — não há integração com APIs financeiras reais
-- O projeto foi desenvolvido durante a Hackathon de Calouros da UNAMA (2025)
+| Rota | Descrição |
+|------|-----------|
+| `GET /api/ativos` | Lista todos os ativos (ações, FIIs, Tesouro) |
+| `GET /api/mercado` | Índices de mercado e resumo do dia |
+| `GET /api/perfil/<tipo>` | Recomendação por perfil (conservador, moderado, arrojado) |
+
+---
+
+## ⚠️ Aviso
+
+Os dados apresentados são **fictícios e simulados**, com fins exclusivamente educacionais. Não constituem recomendação de investimento.
+
+---
+
+*Desenvolvido na Hackathon de Calouros — UNAMA, Abril 2025*
