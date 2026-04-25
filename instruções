@@ -1,0 +1,14 @@
+COMO RODAR O INVESTFÁCIL
+=========================
+
+1. Instalar dependências:
+   python -m pip install flask flask-cors
+
+2. Rodar o backend:
+   python backend/app.py
+
+3. Abrir o site:
+   Abrir o arquivo frontend/index.html com o Live Server no VS Code
+   OU acessar: http://127.0.0.1:5500/frontend/index.html
+
+⚠️ O Flask precisa estar rodando para o site funcionar!
